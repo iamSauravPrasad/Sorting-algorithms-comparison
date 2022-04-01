@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "selectionsort.h"
+#include "insertionsort.h"
 #include "bubblesort.h"
 #include "selectionsort.h"
 
@@ -17,20 +17,21 @@ void swap(int *m,int *i)
 void display(int arr[],int n)
 {
 	int i;
+	printf("\n");
 	for(i=0;i<n;i++)
 	{
-		printf("\nValue at %d",arr[i]);
+		printf("%d\t",arr[i]);
 	}
 }
 
-int random(int arr[])
+int randoms(int arr[])
 {
 	int n,i;
 	printf("Enter the total numbers of elements you want to enter : ");
 	scanf("%d",&n);
 	for(i=0;i<n;i++)
 	{
-		arr[i]=rand()%100;
+		arr[i]=rand()%20;
 	}
 	display(arr,n);
 	return n;
@@ -91,7 +92,7 @@ int input(int arr[])
 	scanf("%d",&n);
 	for(i=0;i<n;i++)
 	{
-		printf("\nenter the value at %d",i);
+		printf("\narr[%d]:",i);
 		scanf("%d",&arr[i]);
 	}
 	display(arr,n);
@@ -100,11 +101,10 @@ int input(int arr[])
 
 int main()
 {
-	int arr[MAX],n,choice;
-	n = random(arr);
+	int arr[MAX],arr2[MAX],arr3[MAX],arr4[MAX],n,choice,i;
 	while(1)
 	{
-		printf("\n1.Create an Array\n2.Generate a random array\n3.Generate a random array of ascending order\n4.Generate a random array of descending array\n5.Display Array\n6.Selection Sort\n7.Insertion Sort\n8.Bubble Sort\n9.Exit\nEnter your choice:");
+		printf("\n\n1.Create an Array\n2.Generate a random array\n3.Generate a random array of ascending order\n4.Generate a random array of descending array\n5.Display Array\n6.Selection Sort\n7.Insertion Sort\n8.Bubble Sort\n9.Exit\nEnter your choice:");
 		scanf("%d",&choice);
 		switch(choice)
 		{
@@ -112,7 +112,7 @@ int main()
 				n=input(arr);
 				break;
 			case 2:
-				n=random(arr);
+				n=randoms(arr);
 				break;
 			case 3:
 				n=random_acc(arr);
@@ -124,13 +124,22 @@ int main()
 				display(arr,n);
 				break;
 			case 6:
-				selection_sort(arr,n);
+				for(i=0;i<n;i++)
+					arr2[i]=arr[i];
+				selection_sort(arr2,n);
+				display(arr2,n);
 				break;
 			case 7:
-				insertion_sort(arr,n);
+				for(i=0;i<n;i++)
+					arr3[i]=arr[i];
+				insertion_sort(arr3,n);
+				display(arr3,n);
 				break;
 			case 8:
-				bubble_sort(arr,n);
+				for(i=0;i<n;i++)
+					arr4[i]=arr[i];
+				bubble_sort(arr4,n);
+				display(arr4,n);
 				break;
 			case 9:
 				exit(0);
